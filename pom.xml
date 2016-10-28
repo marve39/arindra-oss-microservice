@@ -7,14 +7,14 @@
     <artifactId>arindra-oss-microservices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-	<modules>
-		<module>oss-am-connector</module>
-		<!--
-		<module>alarm-service-broker</module>
-		<module>ticketing-service-broker</module>
-		<module>logging-service-broker</module>
-		-->
-	</modules>
+    <modules>
+        <module>oss-am-connector</module>
+        <module>alarm-service-broker</module>
+        <!--
+        <module>ticketing-service-broker</module>
+        <module>logging-service-broker</module>
+        -->
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -27,12 +27,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        
+        <spring.cloud.zookeeper.version>1.0.0.BUILD-SNAPSHOT</spring.cloud.zookeeper.version>
+        <zookeeper.version>3.4.6</zookeeper.version>
+        <curator.version>2.7.1</curator.version>    
     </properties>
 
     <dependencies>
 	
-		<!-- Spring depedencies -->
-		<dependency>
+        <!-- Spring depedencies -->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -40,7 +44,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
-		<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
@@ -54,18 +58,29 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.reactivex</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>1.1.5</version>
+        </dependency>
         
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+        </dependency>
     </dependencies>
-<!--
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
--->
+       
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-zookeeper-dependencies</artifactId>
+                <version>1.0.3.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <repositories>
         <repository>
             <id>spring-snapshots</id>

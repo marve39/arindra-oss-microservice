@@ -1,0 +1,6 @@
+spring:
+    application:
+        name: alarm-service-broker
+    cloud:
+        zookeeper:
+            connect-string: 103.49.105.21:2181
